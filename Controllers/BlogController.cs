@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using ServerBlogManagement.Data;
 using ServerBlogManagement.Models;
 
@@ -18,6 +20,7 @@ public class BlogController : ControllerBase
 
     // GET: api/Blog
     [HttpGet]
+    [Authorize]
     public async Task<ActionResult<IEnumerable<Blog>>> GetBlogs()
     {
         return await _context.Blogs.ToListAsync();
@@ -25,42 +28,40 @@ public class BlogController : ControllerBase
 
     // GET: api/Blog/5
     [HttpGet("{id}")]
+    [Authorize]
     public async Task<ActionResult<Blog>> GetBlog(int id)
     {
-        var blog = await _context.Blogs.Include(b => b.Posts).FirstOrDefaultAsync(b => b.Id == id);
-
-        if (blog == null)
-        {
-            return NotFound();
-        }
-
-        return blog;
+        Blog? blog = await _context.Blogs.FindAsync(id);
+        return blog is null ? NotFound() : blog;
     }
 
     [HttpPost]
-    public async Task<ActionResult<Blog>> PostBlog([FromBody] Blog blog)
+    public async Task<ActionResult> PostBlog([FromBody] BlogInputModel blogInput)
     {
-        try
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        
 
+            // Map the input model to the entity
+            var blog = new Blog
+            {
+                Title = blogInput.Title,
+                Posts = blogInput.Posts?.Select(postInput => new Post
+                {
+                    Title = postInput.PostTitle,
+                    Content = postInput.Content
+                }).ToList()
+            };
+
+            // Add the blog to the context
             _context.Blogs.Add(blog);
+
+            // Save changes to the database
             await _context.SaveChangesAsync();
 
+            // Return the newly created blog
             return CreatedAtAction(nameof(GetBlog), new { id = blog.Id }, blog);
-        }
-        catch (Exception ex)
-        {
-            // Log the exception using a logging framework
-            _logger.LogError(ex, "Error creating a new blog");
-
-            // Return a generic error response
-            return StatusCode(500, "Internal Server Error");
-        }
     }
+
+
 
 
     [HttpPut("{id}")]
@@ -100,7 +101,6 @@ public class BlogController : ControllerBase
 
         return NoContent();
     }
-
 
 
     // DELETE: api/Blog/5

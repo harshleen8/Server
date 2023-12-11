@@ -4,7 +4,7 @@
 
 namespace ServerBlogManagement.Migrations
 {
-    public partial class UserTableUpdates : Migration
+    public partial class UpdatedUserModel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -24,16 +24,6 @@ namespace ServerBlogManagement.Migrations
                 type: "nvarchar(max)",
                 nullable: false,
                 defaultValue: "");
-
-            migrationBuilder.Sql("IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Users') " +
-                                 "BEGIN " +
-                                 "CREATE TABLE [Users] (" +
-                                 "    [Id] int NOT NULL IDENTITY," +
-                                 "    [Username] nvarchar(max) NOT NULL," +
-                                 "    [PasswordHash] nvarchar(max) NOT NULL," +
-                                 "    CONSTRAINT [PK_Users] PRIMARY KEY ([Id])" +
-                                 ");" +
-                                 "END");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -41,8 +31,6 @@ namespace ServerBlogManagement.Migrations
             migrationBuilder.DropColumn(
                 name: "PasswordHash",
                 table: "Users");
-
-            migrationBuilder.Sql("DROP TABLE IF EXISTS [Users];");
 
             migrationBuilder.RenameColumn(
                 name: "Username",

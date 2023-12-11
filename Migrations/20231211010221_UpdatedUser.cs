@@ -4,7 +4,7 @@
 
 namespace ServerBlogManagement.Migrations
 {
-    public partial class UserTableFields : Migration
+    public partial class UpdatedUser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

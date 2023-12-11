@@ -64,3 +64,5 @@ C:\Users\hs844760\OneDrive - California State University, Northridge\Harshleen\C
 C:\Users\hs844760\OneDrive - California State University, Northridge\Harshleen\COMP584\server\ServerBlogManagement\ServerBlogManagement\obj\Debug\net6.0\ServerBlogManagement.pdb
 C:\Users\hs844760\OneDrive - California State University, Northridge\Harshleen\COMP584\server\ServerBlogManagement\ServerBlogManagement\obj\Debug\net6.0\ServerBlogManagement.genruntimeconfig.cache
 C:\Users\hs844760\OneDrive - California State University, Northridge\Harshleen\COMP584\server\ServerBlogManagement\ServerBlogManagement\obj\Debug\net6.0\ref\ServerBlogManagement.dll
+C:\Users\hs844760\OneDrive - California State University, Northridge\Harshleen\COMP584\server\ServerBlogManagement\ServerBlogManagement\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\hs844760\OneDrive - California State University, Northridge\Harshleen\COMP584\server\ServerBlogManagement\ServerBlogManagement\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll

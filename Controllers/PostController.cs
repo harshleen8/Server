@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ServerBlogManagement.Data;
 using ServerBlogManagement.Models;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class PostController : ControllerBase
 {
     private readonly AppDbContext _context;

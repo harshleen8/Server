@@ -11,8 +11,8 @@ using ServerBlogManagement.Data;
 namespace ServerBlogManagement.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231208094147_UserTableUpdates")]
-    partial class UserTableUpdates
+    [Migration("20231209052626_UpdatedUserModel")]
+    partial class UpdatedUserModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
