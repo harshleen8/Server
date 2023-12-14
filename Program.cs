@@ -12,7 +12,7 @@ ConfigurationManager configuration = builder.Configuration;
 
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
-    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+    //options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
 });
 
 

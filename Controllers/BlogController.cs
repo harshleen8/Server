@@ -38,29 +38,39 @@ public class BlogController : ControllerBase
     [HttpPost]
     public async Task<ActionResult> PostBlog([FromBody] BlogInputModel blogInput)
     {
-        
-
-            // Map the input model to the entity
-            var blog = new Blog
+        // Map the input model to the entity
+        var blog = new Blog
+        {
+            Title = blogInput.Title,
+            Posts = blogInput.Posts?.Select(postInput => new Post
             {
-                Title = blogInput.Title,
-                Posts = blogInput.Posts?.Select(postInput => new Post
-                {
-                    Title = postInput.PostTitle,
-                    Content = postInput.Content
-                }).ToList()
-            };
+                Title = postInput.PostTitle,
+                Content = postInput.Content
+            }).ToList()
+        };
 
-            // Add the blog to the context
-            _context.Blogs.Add(blog);
+        // Add the blog to the context
+        _context.Blogs.Add(blog);
 
-            // Save changes to the database
-            await _context.SaveChangesAsync();
+        // Save changes to the database
+        await _context.SaveChangesAsync();
 
-            // Return the newly created blog
-            return CreatedAtAction(nameof(GetBlog), new { id = blog.Id }, blog);
+        // Map the entity to the DTO
+        var blogDto = new BlogDto
+        {
+            Id = blog.Id,
+            Title = blog.Title,
+            Posts = blog.Posts?.Select(post => new PostDto
+            {
+                Id = post.Id,
+                Title = post.Title,
+                Content = post.Content
+            }).ToList()
+        };
+
+        // Return the DTO
+        return CreatedAtAction(nameof(GetBlog), new { id = blog.Id }, blogDto);
     }
-
 
 
 

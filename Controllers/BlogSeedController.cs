@@ -78,8 +78,7 @@ namespace ServerBlogManagement.Controllers
                             Posts = record.Posts?.Select(post => new Post { Title = post }).ToList()
                         };
 
-                        bool allExistingBlogsSatisfyCondition = await _context.Blogs.AllAsync(existingBlog => existingBlog.Title.Length < 50);
-
+                        _context.Blogs.Add(blog);
                         blogsByTitle.Add(record.Title, blog);
                     }
                 }
@@ -101,9 +100,8 @@ namespace ServerBlogManagement.Controllers
 
                 return StatusCode(500, $"Internal Server Error: {ex.Message}");
             }
-
-
         }
+
 
         [HttpPost("Users")]
         public async Task<IActionResult> ImportUsers()

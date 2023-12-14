@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xbsWgbxhQvRwjWB9Whs9BKprWVF70JKhjYlEL8nEu+5ctpm7NiuOqbu0i3kvxRoPoVpF+xxbvVdyZ1Jmp0gLgw==",
+  "dgSpecHash": "B6ZiurQBzD3ohCEQQsEY7TC+xWfcpzqeo12peDt/DYELZnAkdLM5/VGuwoi90Xamg9/mwbEVctUYwo+yYj1XLw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hs844760\\OneDrive - California State University, Northridge\\Harshleen\\COMP584\\server\\ServerBlogManagement\\ServerBlogManagement\\ServerBlogManagement.csproj",
+  "projectFilePath": "C:\\Users\\hs844760\\OneDrive - California State University, Northridge\\Harshleen\\COMP584\\BlogManagement\\ServerBlogManagement.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hs844760\\.nuget\\packages\\csvhelper\\30.0.1\\csvhelper.30.0.1.nupkg.sha512",
     "C:\\Users\\hs844760\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
